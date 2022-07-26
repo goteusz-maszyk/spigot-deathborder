@@ -1,0 +1,17 @@
+borders:
+  world:
+    x: 80000
+    z: 80000
+    effectsInterval: 15 # time in seconds to run effect sequence
+    effects:
+      - POISON_1_15 # Poison 1 for 15 seconds
+      - POISON_2_15
+      - POISON_2_15-SLOW_1_15
+      - POISON_2_15-SLOW_2_15
+      - KILL
+  world_nether:
+    x: 10000
+    z: 10000
+  world_end:
+    x: 100000
+    z: 100000
