@@ -1,0 +1,6 @@
+name: DeathBorder
+version: '${project.version}'
+main: me.gotitim.deathborder.Deathborder
+api-version: 1.19
+authors: [ gotitim ]
+description: A plugin that makes custom world border
