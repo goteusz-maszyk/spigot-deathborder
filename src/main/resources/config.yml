@@ -15,3 +15,8 @@ borders:
   world_end:
     x: 100000
     z: 100000
+
+texts:
+  exit-border-title: You exited safe world area!
+  exit-border-subtitle: Be careful.
+  effect-announcement: "%effect% in %seconds% seconds!"

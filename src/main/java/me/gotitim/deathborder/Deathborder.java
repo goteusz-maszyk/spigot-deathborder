@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.UUID;
 
 public final class Deathborder extends JavaPlugin {
-    public static final Map<UUID, Integer> playerEffects = new HashMap<>();
+    public final Map<UUID, Integer> playerEffects = new HashMap<>();
     private static Deathborder instance;
 
     @Override
@@ -25,9 +25,7 @@ public final class Deathborder extends JavaPlugin {
 
         saveDefaultConfig();
 
-        getServer().getOnlinePlayers().forEach((Player player) -> {
-            playerEffects.put(player.getUniqueId(), -1);
-        });
+        for (Player player : getServer().getOnlinePlayers()) playerEffects.remove(player.getUniqueId());
     }
 
     @Override
@@ -42,8 +40,7 @@ public final class Deathborder extends JavaPlugin {
         Location location = player.getLocation();
 
         if(worldBorderData.getInt("x", (int) Math.abs(location.getX())) <= Math.abs(location.getX())) return false;
-        if(worldBorderData.getInt("z", (int) Math.abs(location.getZ())) <= Math.abs(location.getZ())) return false;
-        return true;
+        return !(worldBorderData.getInt("z", (int) Math.abs(location.getZ())) <= Math.abs(location.getZ()));
     }
 
     @Nullable
@@ -55,7 +52,8 @@ public final class Deathborder extends JavaPlugin {
     public ConfigurationSection getBorder(World world) {
         ConfigurationSection borders = getConfig().getConfigurationSection("borders");
         if(borders == null) {
-            Bukkit.getLogger().warning("Warning: No borders specified in config.yml!");
+            Bukkit.getLogger().severe("Warning: No borders specified in config.yml!");
+            Bukkit.getPluginManager().disablePlugin(this);
             return null;
         }
 
